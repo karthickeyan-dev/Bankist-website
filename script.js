@@ -29,6 +29,7 @@ document.addEventListener('keydown', function (e) {
 });
 
 // Cookies message
+
 const header = document.querySelector('.header');
 const message = document.createElement('div');
 message.classList.add('cookie-message');
@@ -42,3 +43,27 @@ header.append(message);
 document
   .querySelector('.btn--close-cookie')
   .addEventListener('click', () => message.remove());
+
+// Styles
+
+message.style.backgroundColor = '#37383d';
+// message.style.width = '120%';
+
+message.style.height =
+  Number.parseFloat(getComputedStyle(message).height, 10) + 30 + 'px';
+
+// Smooth scrolling
+
+const btnScroll = document.querySelector('.btn--scroll-to');
+const section1 = document.querySelector('#section--1');
+
+btnScroll.addEventListener('click', () => {
+  // const sec1coords = section1.getBoundingClientRect();
+  // window.scrollTo({
+  //   left: sec1coords.left + window.scrollX,
+  //   top: sec1coords.top + window.scrollY,
+  //   behavior: 'smooth',
+  // });
+
+  section1.scrollIntoView({ behavior: 'smooth' });
+});
