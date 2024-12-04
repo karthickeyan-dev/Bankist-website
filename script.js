@@ -107,3 +107,24 @@ tabContainer.addEventListener('click', e => {
     .querySelector(`.operations__content--${clicked.dataset.tab}`)
     .classList.add('operations__content--active');
 });
+
+// Nav menu hover
+// (can also be done by using a callback function that returns a function in the event listener)
+
+const navLinks = document.querySelector('.nav__links');
+
+const navHover = function (e) {
+  const targetLink = e.target;
+  if (!e.target.classList.contains('nav__link')) return;
+
+  const allLinks = targetLink
+    .closest('.nav__links')
+    .querySelectorAll('.nav__link');
+
+  allLinks.forEach(link => {
+    if (link !== targetLink) link.style.opacity = this;
+  });
+};
+
+navLinks.addEventListener('mouseover', navHover.bind(0.5));
+navLinks.addEventListener('mouseout', navHover.bind(1));
