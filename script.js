@@ -30,15 +30,15 @@ document.addEventListener('keydown', function (e) {
 
 // Cookies message
 
-const header = document.querySelector('.header');
+const footer = document.querySelector('.footer');
 const message = document.createElement('div');
 message.classList.add('cookie-message');
 
 message.innerHTML =
   'we use cookies for improved functionality and analytics<button class="btn btn--close-cookie">Got it!</button>';
 
-// header.insertAdjacentElement('beforeEnd', message);
-header.append(message);
+// footer.insertAdjacentElement('beforeEnd', message);
+footer.append(message);
 
 document
   .querySelector('.btn--close-cookie')
@@ -128,3 +128,24 @@ const navHover = function (e) {
 
 navLinks.addEventListener('mouseover', navHover.bind(0.5));
 navLinks.addEventListener('mouseout', navHover.bind(1));
+
+//Sticky Nav
+
+const header = document.querySelector('.header');
+const nav = document.querySelector('.nav');
+const navHeight = nav.getBoundingClientRect().height;
+
+const stickyNav = function (entries) {
+  const [entry] = entries; // Same as entries[0]
+
+  if (!entry.isIntersecting) nav.classList.add('sticky');
+  else nav.classList.remove('sticky');
+};
+
+const headerObs = new IntersectionObserver(stickyNav, {
+  root: null,
+  rootMargin: `-${navHeight}px`,
+  threshold: 0,
+});
+
+headerObs.observe(header);
